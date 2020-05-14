@@ -1,3 +1,5 @@
+import { cloneDeep } from "lodash";
+
 let initialState = {
   loading: false,
   item: [],
@@ -32,6 +34,8 @@ function reducer(state = initialState, action) {
       };
     case "ADD_TO_CART":
       foundIndex = item.findIndex(x => x.itemname === action.itemToBeAdded);
+      item = cloneDeep(item);
+      cart = cloneDeep(cart);
       item[foundIndex]["cartCount"] = 1;
       cart.push(item[foundIndex]);
       total = total + item[foundIndex]["price"];
@@ -43,17 +47,21 @@ function reducer(state = initialState, action) {
       };
     case "ADD":
       foundIndex = item.findIndex(x => x.itemname === action.itemInc);
+      item = cloneDeep(item);
+      cart = cloneDeep(cart);
       item[foundIndex]["cartCount"] = item[foundIndex]["cartCount"] + 1;
       foundIndexCart = cart.findIndex(x => x.itemname === action.itemInc);
       cart[foundIndexCart]["cartCount"] = item[foundIndex]["cartCount"];
-      total = total + item[foundIndex]["price"];
+      //total = total + fooItem[foundIndex]["price"];
       return {
         ...state,
-        item,
-        cart,
+        item: item,
+        cart: cart,
         total
       };
     case "SUBTRACT":
+      item = cloneDeep(item);
+      cart = cloneDeep(cart);
       foundIndex = item.findIndex(x => x.itemname === action.itemDec);
       item[foundIndex]["cartCount"] = item[foundIndex]["cartCount"] - 1;
       if (item[foundIndex]["cartCount"] === 0) {
@@ -73,6 +81,8 @@ function reducer(state = initialState, action) {
         total
       };
     case "REMOVE_ITEM_FROM_CART":
+      item = cloneDeep(item);
+      cart = cloneDeep(cart);
       foundIndex = item.findIndex(x => x.itemname === action.itemToRemove);
 
       cart = cart.filter(function(obj) {

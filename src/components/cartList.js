@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { add, subtract, removeItem } from "../actions/action";
+import { add, subtract, removeItemFromCart } from "../actions/action";
 
 class CartList extends Component {
   add = (e, itemname) => {
@@ -55,5 +55,6 @@ const mapStateToProps = state => ({
   cart: state.products.cart,
   total: state.products.total
 });
-
+// Connect is a HOC https://reactjs.org/docs/higher-order-components.html
+// Both the Provider and Connect HOCs gives any React app the ability to easily work with Redux’s store.
 export default connect(mapStateToProps)(CartList);

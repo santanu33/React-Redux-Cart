@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 
 import { addToCart, add, subtract } from "../actions/action";
 
-class ItemList extends Component {
+class ItemList extends PureComponent {
+
+
   addToCart = (e, itemname) => {
     this.props.dispatch(addToCart(itemname));
   };
@@ -35,6 +37,7 @@ class ItemList extends Component {
                   <button onClick={e => this.add(e, i.itemname)}>+</button>
                 </div>
               )}
+              <p>{i.cartCount}</p>
             </div>
           </div>
         </div>
