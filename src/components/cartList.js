@@ -14,7 +14,7 @@ class CartList extends Component {
 
   removeItem = (e, itemname, amount) => {
     console.log("amount", amount);
-    this.props.dispatch(removeItem(itemname, amount));
+    this.props.dispatch(removeItemFromCart(itemname, amount));
   };
 
   render() {

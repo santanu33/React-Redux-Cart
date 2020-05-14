@@ -52,7 +52,7 @@ function reducer(state = initialState, action) {
       item[foundIndex]["cartCount"] = item[foundIndex]["cartCount"] + 1;
       foundIndexCart = cart.findIndex(x => x.itemname === action.itemInc);
       cart[foundIndexCart]["cartCount"] = item[foundIndex]["cartCount"];
-      //total = total + fooItem[foundIndex]["price"];
+      total = total + item[foundIndex]["price"];
       return {
         ...state,
         item: item,
